@@ -1,0 +1,15 @@
+# Idea
+.idea/
+*.iml
+
+# Gradle
+.gradle
+gradle/
+gradlew
+gradlew.bat
+
+# Java
+build/
+
+# NLP models
+*.bin
