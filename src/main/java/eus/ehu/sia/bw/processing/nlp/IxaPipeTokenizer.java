@@ -11,11 +11,6 @@ import java.util.Properties;
  */
 public class IxaPipeTokenizer {
 
-    public static final String LANGUAGE_SPANISH = "es";
-    public static final String LANGUAGE_ENGLISH = "en";
-    public static final String LANGUAGE_FRENCH = "fr";
-    public static final String LANGUAGE_GALICIAN = "gl";
-
     private final Properties annotateProperties;
 
     public IxaPipeTokenizer(String language){
