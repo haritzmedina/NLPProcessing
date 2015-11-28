@@ -28,15 +28,19 @@ public class Main {
 
         // Retrieve entities
         IxaPipeWrapper ixaPipeWrapperSpanish = new IxaPipeWrapper(IxaPipeWrapper.LANGUAGE_SPANISH);
-        IxaPipeWrapper ixaPipeWrapperEnglish = new IxaPipeWrapper(IxaPipeWrapper.LANGUAGE_SPANISH);
+        IxaPipeWrapper ixaPipeWrapperEnglish = new IxaPipeWrapper(IxaPipeWrapper.LANGUAGE_ENGLISH);
 
         for(Item item : items){
             if(IxaPipeWrapper.LANGUAGE_SPANISH.compareTo(item.getLanguage())==0){
-                ixaPipeWrapperSpanish.retrieveEntities(item);
+                ixaPipeWrapperSpanish.addEntities(item);
             }
             else if(IxaPipeWrapper.LANGUAGE_ENGLISH.compareTo(item.getLanguage())==0){
-                ixaPipeWrapperEnglish.retrieveEntities(item);
+                ixaPipeWrapperEnglish.addEntities(item);
             }
+        }
+
+        for (Item item : items) {
+            System.out.println(item);
         }
 
         // TODO Retrieve sentiment analysis

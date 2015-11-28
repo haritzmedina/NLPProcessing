@@ -3,7 +3,7 @@ package eus.ehu.sia.bw.processing.nlp;
 import eus.ehu.sia.bw.processing.Item;
 import ixa.kaflib.KAFDocument;
 
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Created by Haritz on 27/11/2015.
@@ -32,15 +32,25 @@ public class IxaPipeWrapper {
         }
     }
 
-    public Map<String, Entity> retrieveEntities(Item item){
+    public void addEntities(Item item){
         try {
             KAFDocument kaf = nerc.nerc(postagger.postagging(tokenizer.tokenize(item.getCommentary())));
-            kaf.getEntities().iterator().forEachRemaining((a)->{
-                System.out.println(a.getStr());
+            kaf.getEntities().iterator().forEachRemaining((kafEntity)->{
+                String entity = kafEntity.getStr();
+                if(item.getEntities()==null){
+                    item.setEntities(new HashMap<String, Entity>());
+                }
+                if(item.getEntities().containsKey(entity)){
+                    item.getEntities().put(entity, new Entity(entity, item.getEntities().get(entity).getValue()+1));
+                }
+                else{
+                    item.getEntities().put(entity, new Entity(entity, 1));
+                }
+
             });
         } catch (LanguageDoesNotMatch languageDoesNotMatch) {
             languageDoesNotMatch.printStackTrace();
         }
-        return null;
+        // TODO add entities
     }
 }
