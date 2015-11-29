@@ -51,6 +51,5 @@ public class IxaPipeWrapper {
         } catch (LanguageDoesNotMatch languageDoesNotMatch) {
             languageDoesNotMatch.printStackTrace();
         }
-        // TODO add entities
     }
 }

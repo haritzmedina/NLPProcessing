@@ -1,5 +1,6 @@
 package eus.ehu.sia.bw.processing.sentiment;
 
+import eus.ehu.sia.bw.processing.Item;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,11 +51,21 @@ public class NLTKSentimentAnalysis implements SentimentAnalyser {
             System.out.println(responseString);
             JSONObject resultJson = new JSONObject(responseString);
             String result = resultJson.getString("label");
-            sentiment = new Sentiment(result);
+            JSONObject probability = (JSONObject) resultJson.get("probability");
+            BigDecimal pos = probability.getBigDecimal("pos");
+            BigDecimal neg = probability.getBigDecimal("neg");
+            BigDecimal neutral = probability.getBigDecimal("neutral");
+            sentiment = new Sentiment(pos, neg, neutral, result);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return sentiment;
+    }
+
+    @Override
+    public void addAnalysis(Item item) {
+        Sentiment sentiment = this.analyse(item.getCommentary());
+        item.setSentiment(sentiment);
     }
 
     public static void main(String[] args){

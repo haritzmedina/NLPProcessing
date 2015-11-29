@@ -12,9 +12,6 @@ import java.util.Properties;
  */
 public class IxaPipeNerc {
 
-    public static final String LANGUAGE_SPANISH = "es";
-    public static final String LANGUAGE_ENGLISH = "en";
-
     public static final String MODEL_ENGLISH = "models/nerc/en-clark-conll03.bin";
     public static final String MODEL_SPANISH = "models/nerc/es-clusters-conll02.bin";
 

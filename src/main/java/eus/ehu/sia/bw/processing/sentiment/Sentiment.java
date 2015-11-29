@@ -1,39 +1,41 @@
 package eus.ehu.sia.bw.processing.sentiment;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Haritz on 25/11/2015.
  */
 public class Sentiment {
-    private Long pos;
-    private Long neg;
-    private Long neutral;
+    private BigDecimal pos;
+    private BigDecimal neg;
+    private BigDecimal neutral;
     private String result;
 
     public Sentiment(String result) {
         this.result = result;
     }
 
-    public Long getPos() {
+    public BigDecimal getPos() {
         return pos;
     }
 
-    public void setPos(Long pos) {
+    public void setPos(BigDecimal pos) {
         this.pos = pos;
     }
 
-    public Long getNeg() {
+    public BigDecimal getNeg() {
         return neg;
     }
 
-    public void setNeg(Long neg) {
+    public void setNeg(BigDecimal neg) {
         this.neg = neg;
     }
 
-    public Long getNeutral() {
+    public BigDecimal getNeutral() {
         return neutral;
     }
 
-    public void setNeutral(Long neutral) {
+    public void setNeutral(BigDecimal neutral) {
         this.neutral = neutral;
     }
 
@@ -55,7 +57,7 @@ public class Sentiment {
                 '}';
     }
 
-    public Sentiment(Long pos, Long neg, Long neutral, String result) {
+    public Sentiment(BigDecimal pos, BigDecimal neg, BigDecimal neutral, String result) {
 
         this.pos = pos;
         this.neg = neg;

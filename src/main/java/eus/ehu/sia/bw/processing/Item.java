@@ -4,12 +4,16 @@ import eus.ehu.sia.bw.processing.nlp.Entity;
 import eus.ehu.sia.bw.processing.sentiment.Sentiment;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Haritz on 27/11/2015.
  */
 public class Item {
+
+    public static final String LANGUAGE_ENGLISH = "en";
+    public static final String LANGUAGE_SPANISH = "es";
 
     private String commentary;
     private String id;
@@ -111,9 +115,12 @@ public class Item {
         this.source = source;
         this.date = date;
         this.language = language;
+        this.sentiment = new Sentiment();
+        this.entities = new HashMap<>();
     }
 
     public Item() {
-
+        this.sentiment = new Sentiment();
+        this.entities = new HashMap<>();
     }
 }
