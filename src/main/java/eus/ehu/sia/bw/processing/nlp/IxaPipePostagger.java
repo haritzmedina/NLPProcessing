@@ -36,7 +36,8 @@ public class IxaPipePostagger {
         // Check if language of kaf and preset is the same
         String language = kaf.getLang();
         if(language.compareTo(this.annotateProperties.getProperty("language"))!=0){
-            throw new LanguageDoesNotMatch();
+            throw new LanguageDoesNotMatch("Postagger language: "+this.annotateProperties.getProperty("language")+
+                    " KAF document language: "+language);
         }
 
         annotator.annotatePOSToKAF(kaf);

@@ -34,6 +34,7 @@ public class NLTKSentimentAnalysis implements SentimentAnalyser {
     }
 
     public Sentiment analyse(String text) {
+        this.client = HttpClientBuilder.create().build(); // Create a new client for every post. Due to limit of RESTapi server.
         List nameValuePairs = new ArrayList(1);
         nameValuePairs.add(new BasicNameValuePair("language", language));
         nameValuePairs.add(new BasicNameValuePair("text", text));
@@ -48,7 +49,6 @@ public class NLTKSentimentAnalysis implements SentimentAnalyser {
             HttpResponse response = client.execute(post);
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
             String responseString = IOUtils.toString(rd);
-            System.out.println(responseString);
             JSONObject resultJson = new JSONObject(responseString);
             String result = resultJson.getString("label");
             JSONObject probability = (JSONObject) resultJson.get("probability");
@@ -70,6 +70,9 @@ public class NLTKSentimentAnalysis implements SentimentAnalyser {
 
     public static void main(String[] args){
         SentimentAnalyser analyser = new NLTKSentimentAnalysis(NLTKSentimentAnalysis.LANGUAGE_ENGLISH);
-        System.out.println(analyser.analyse("The film was bad."));
+        for(int i=0;i<50;i++){
+            System.out.println(analyser.analyse("The film was bad."));
+        }
+
     }
 }

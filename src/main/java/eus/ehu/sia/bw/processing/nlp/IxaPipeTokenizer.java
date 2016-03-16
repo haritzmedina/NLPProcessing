@@ -27,7 +27,7 @@ public class IxaPipeTokenizer {
         // Read it with BufferedReader
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         Annotate annotate = new Annotate(br, annotateProperties);
-        KAFDocument kaf = new KAFDocument("es", "v1.naf");
+        KAFDocument kaf = new KAFDocument(annotateProperties.getProperty("language"), "v1.naf");
         try {
             annotate.tokenizeToKAF(kaf);
         } catch (IOException e) {
